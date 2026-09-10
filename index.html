@@ -1,173 +1,637 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Business Name] - [Industry] Leader</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Test - Professional Solutions and Services in Khartoum. High-quality expertise tailored to your needs.">
+    <title>Test | Professional Solutions Khartoum</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #38bdf8;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
         }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('[Photo 1]');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            color: var(--secondary);
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: -60px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 16px;
+            color: var(--secondary);
+        }
+
+        /* About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            background: #e2e8f0;
+            height: 400px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        .section-tag {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 24px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .service-item {
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            border-color: var(--primary);
+            background: #fdfdfd;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-light);
+            border-radius: 24px;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 24px;
+        }
+
+        .contact-detail {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-detail span {
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 80px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-copy {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Mobile Menu */
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 40px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .about, .contact {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact {
+                padding: 30px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2">
-                <img src="[Logo URL]" alt="[Business Name] Logo" class="h-10 w-auto">
-                <span class="text-xl font-bold text-gray-900">[Business Name]</span>
-            </a>
+    <header>
+        <div class="container">
             <nav>
-                <a href="#contact" class="bg-indigo-600 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-300">
-                    Contact Us
-                </a>
+                <div class="logo">TEST</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <div class="mobile-menu-btn" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </nav>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-bg bg-cover bg-center h-screen flex items-center justify-center pt-20">
-            <div class="text-center text-white px-6">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">
-                    [Business Name]: Your Expert in [Industry]
-                </h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-200 mb-8">
-                    [Description]
-                </p>
-                <a href="#services" class="bg-indigo-600 text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105 shadow-xl">
-                    Explore Our Services
-                </a>
+        <section class="hero" id="home">
+            <div class="container">
+                <span class="hero-badge">Innovative Services in Khartoum</span>
+                <h1>Building the Future of Business with Precision.</h1>
+                <p>Welcome to Test. We provide professional solutions and dedicated expertise tailored to help your projects thrive in Sudan's evolving market.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn btn-primary">Our Services</a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Services</h2>
-                    <p class="mt-4 text-lg text-gray-600">We offer a range of solutions to meet your needs.</p>
+        <!-- Feature Grid -->
+        <section class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">★</div>
+                    <h3>Quality Driven</h3>
+                    <p>We maintain the highest standards in every project, ensuring results that exceed expectations.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Service Card 1 -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3m6-6h3m-3 6h3M6 6l-2-2m14 14l-2-2M6 18l-2 2m14-14l-2 2" />
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">[Service 1 from Services list]</h3>
-                        <p class="text-gray-600">A brief description of the first service, highlighting its key benefits and value to the customer.</p>
-                    </div>
-
-                    <!-- Service Card 2 -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">[Service 2 from Services list]</h3>
-                        <p class="text-gray-600">Explain the second core service, focusing on the problems it solves and the outcomes it delivers.</p>
-                    </div>
-                    
-                    <!-- Service Card 3 -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-16 w-16 flex items-center justify-center mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">[Service 3 from Services list]</h3>
-                        <p class="text-gray-600">Detail the third service, making it clear why a potential client should choose this specific option.</p>
-                    </div>
-                    <!-- Add more service cards as needed based on the 'Services' input -->
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Local Expertise</h3>
+                    <p>Deeply rooted in Khartoum, we understand the local business landscape and requirements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Reliable Partner</h3>
+                    <p>Your success is our priority. We offer consistent support and transparent communication.</p>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 md:order-1">
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            With years of experience in the [Industry] sector, [Business Name] is dedicated to providing top-quality service and exceptional results. Our mission is to understand your unique needs and deliver solutions that exceed your expectations.
-                        </p>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            We pride ourselves on our commitment to excellence, integrity, and customer satisfaction. Trust us to be your reliable partner.
-                        </p>
-                        <a href="#contact" class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-300">
-                            Get a Free Consultation
-                        </a>
+        <section class="section-padding container" id="about">
+            <div class="about">
+                <div class="about-image">
+                    <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.2;">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </div>
+                <div class="about-content">
+                    <span class="section-tag">About Our Business</span>
+                    <h2 class="section-title">Professional Excellence in Every Detail</h2>
+                    <p>Based in the heart of Khartoum, Test is dedicated to providing specialized services that bridge the gap between vision and reality. Whether you're looking for consulting, operational support, or technical expertise, our team is equipped to deliver.</p>
+                    <p style="margin-top: 20px;">We believe in building long-term relationships based on trust, integrity, and exceptional performance. Our approach is personalized, ensuring that every client receives a solution that fits their unique context.</p>
+                    <div style="margin-top: 30px;">
+                        <a href="#contact" class="btn btn-primary">Contact Us Today</a>
                     </div>
-                    <div class="order-1 md:order-2">
-                        <img src="[Photo 2]" alt="About [Business Name]" class="rounded-xl shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div>
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Projects Completed</span>
                     </div>
+                    <div>
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Client Support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section-padding container" id="services">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <span class="section-tag">What We Offer</span>
+                <h2 class="section-title">Our Main Services</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: var(--text-light);">We provide a comprehensive range of services designed to support growth and efficiency.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Strategic Consulting</h3>
+                    <p>In-depth analysis and planning to help your business navigate challenges and seize opportunities in the Khartoum market.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Operational Support</h3>
+                    <p>Streamlining your processes to improve productivity and reduce costs through proven methodologies.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Digital Solutions</h3>
+                    <p>Modernizing your presence and internal tools to keep pace with global technological advancements.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Local Market Research</h3>
+                    <p>Providing actionable insights into Sudanese consumer behavior and economic trends.</p>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Get in Touch</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                    We're here to help and answer any question you might have. We look forward to hearing from you.
-                </p>
-                <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-8">
-                    <!-- Phone Contact -->
-                    <div class="border border-gray-200 rounded-lg p-8 w-full md:w-auto text-center hover:bg-gray-50 transition-colors">
-                        <div class="text-indigo-600 mx-auto mb-4 h-12 w-12 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900">Call Us</h3>
-                        <p class="text-gray-500 mt-1">Speak directly to our team.</p>
-                        <a href="tel:[Phone]" class="mt-4 inline-block text-lg font-medium text-indigo-600 hover:text-indigo-800">[Phone]</a>
+        <section class="section-padding container" id="contact">
+            <div class="contact">
+                <div class="contact-info">
+                    <span class="section-tag">Reach Out</span>
+                    <h2 class="section-title">Let's Discuss Your Project</h2>
+                    <p style="margin-bottom: 30px;">Ready to take the next step? Contact us for a consultation or to learn more about how we can help you achieve your goals.</p>
+                    
+                    <div class="contact-detail">
+                        <span>Email:</span>
+                        <a href="mailto:mkam@fsf.com" style="color: var(--primary); text-decoration: none;">mkam@fsf.com</a>
                     </div>
-                    <!-- Email Contact -->
-                    <div class="border border-gray-200 rounded-lg p-8 w-full md:w-auto text-center hover:bg-gray-50 transition-colors">
-                        <div class="text-indigo-600 mx-auto mb-4 h-12 w-12 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900">Email Us</h3>
-                        <p class="text-gray-500 mt-1">Send us your questions.</p>
-                        <a href="mailto:[Email]" class="mt-4 inline-block text-lg font-medium text-indigo-600 hover:text-indigo-800">[Email]</a>
+                    <div class="contact-detail">
+                        <span>Location:</span>
+                        <p>خرتوم (Khartoum), Sudan</p>
                     </div>
+                    <div class="contact-detail">
+                        <span>Hours:</span>
+                        <p>Sun - Thu: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Tell us about your project or inquiry" required></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Send Message</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-6 text-center">
-            <p>&copy; 2024 [Business Name]. All Rights Reserved.</p>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: 10px;">TEST</div>
+                    <p style="opacity: 0.7; max-width: 300px;">Professional solutions and business excellence located in Khartoum.</p>
+                </div>
+                <ul class="nav-links" style="display: flex; position: static; background: transparent; padding: 0; box-shadow: none;">
+                    <li><a href="#home" style="color: white;">Home</a></li>
+                    <li><a href="#about" style="color: white;">About</a></li>
+                    <li><a href="#services" style="color: white;">Services</a></li>
+                    <li><a href="#contact" style="color: white;">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-copy">
+                &copy; 2024 Test. All rights reserved. Khartoum, Sudan.
+            </div>
         </div>
     </footer>
-    
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/[WhatsApp]" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 z-50" aria-label="Chat on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.357 1.849 6.069l-1.254 4.569 4.66-1.241z"/>
-        </svg>
-    </a>
 
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .service-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
